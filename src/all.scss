@@ -1,0 +1,22 @@
+@import 'bootstrap/scss/functions';
+@import './variables';
+@import 'bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+body{
+    font-family: 'DotGothic16', sans-serif;
+    color: $gray-800;
+    background-color: $gray-300;
+}
+
+.number{
+    width:120px;
+    text-shadow: 0 0 8px darken($yellow ,20%);
+}
+
+
+@media(max-width:540px){
+    .number{
+        width:auto;
+    }
+}

@@ -13,6 +13,8 @@
     "@popperjs/core": "2.11.7",
     "animate.css": "4.1.1",
     "bootstrap": "5.2.3",
+    "fullpage.js": "^4.0.20",
+    "gh-pages": "^6.0.0",
     "loader-utils": "3.2.1",
     "react": "18.2.0",
     "react-confetti-explosion": "^2.1.2",

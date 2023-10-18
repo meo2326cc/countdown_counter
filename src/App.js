@@ -6,23 +6,23 @@ export default function App() {
 
   return (
 
-    <div className="card rounded-3 shadow-lg bg-200" data-bs-theme="dark">
+    <div className="card rounded-3 shadow-lg bg-200">
       <div className="card-body">
         <h1 className="fs-sp mb-4 text-900">距離<br />離職還剩</h1>
         <CountDown />
-        <iframe className="mt-4" src="https://open.spotify.com/embed/track/0PpKyS37jFU3w8iToakC0c?utm_source=generator" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <iframe className="mt-4" src="https://open.spotify.com/embed/track/0PpKyS37jFU3w8iToakC0c?utm_source=generator" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
       </div>
     </div>
 
   )
 }
 
-export function CountDown() {
+function CountDown() {
   const [leftDays, setLeftdays] = useState('n');
   const [leftHours, setLefthours] = useState('n');
   const [leftMinutes, setLeftminutes] = useState('n');
   const [leftSeconds, setLeftseconds] = useState('n');
-  //const [isExploding, setIsExploding] = useState(false);
+  //const [isLoading , setIsLoading ] = useState(false);
 
   //const time = 1698768000000;
   const time = Date.parse("November 1, 2023");
@@ -32,13 +32,11 @@ export function CountDown() {
 
 
   useEffect(() => {
-    // const animateEl = document.querySelectorAll('.number').forEach(i=>{
-    // i.addEventListener('animationend', () => {
-    //  i.classList.add('animate__fadeOutDown')
-    // })
-    // });
 
-    const i = setInterval(() => {
+    if(time - Date.now()>=0){
+      
+      const i = setInterval(() => {
+
       const timeNow = Date.now();
       const leftTimeTotal = (time - timeNow) / 1000;
       const leftdays = Math.floor(leftTimeTotal / secondsPerDay);
@@ -50,11 +48,20 @@ export function CountDown() {
       setLeftminutes(leftminutes);
       setLeftseconds(leftseconds);
     }, 1000);
-
+      //setIsLoading(true);
     return () => {
       clearInterval(i);
-    };
-  });
+    };    
+    
+    }else{
+      setLeftdays(0);
+      setLefthours(0);
+      setLeftminutes(0);
+      setLeftseconds(0);
+    }
+
+  },[leftSeconds]);
+
 
   return (
     <div className="container">
@@ -76,19 +83,33 @@ export function CountDown() {
             <h2 className="text-warning">{leftSeconds}秒</h2>
           </div>
         </div>
+      {/* { isLoading ? null : <div className="position-absolute bg-100 d-flex align-items-center justify-content-center h-100">loading...</div>} */}
       </div>
-        {/* <ProgressBar/> */}
+      <ProgressBar update={leftSeconds} time={time}/>
     </div>
   );
 }
 
 
 
-// function ProgressBar(){
+function ProgressBar({update ,time}){
+//const November = Date.parse("November 1, 2023");
+const October = Date.parse("October 1, 2023");
+const [progress , setProgress] = useState(0);
 
-//   return (
-//     <div class="progress">
-//   <div className="progress-bar" role="progressbar" style={{width:`${50}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-// </div>
-//   )
-// }
+useEffect(()=>{
+   setProgress(100-((time - Date.now())/(time - October)*100).toFixed(4)) 
+},[update])
+
+
+if(progress>=100){
+  return (
+    <div className="progress row mt-4 bg-300">
+  <div className="progress-bar bg-success" role="progressbar" style={{width:`100%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">100%</div></div>)
+}
+  return (
+    <div className="progress row mt-4 bg-300">
+  <div className="progress-bar bg-warning" role="progressbar" style={{width:`${progress}%`}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{progress}%</div>
+</div>
+  )
+}

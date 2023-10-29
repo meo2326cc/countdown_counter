@@ -14,6 +14,9 @@ body{
     text-shadow: 0 0 8px darken($yellow ,20%);
 }
 
+#root{
+    height: 100dvh;
+}
 
 @media(max-width:540px){
     .number{

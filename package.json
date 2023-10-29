@@ -2,7 +2,7 @@
   "name": "say_goodbye_to_edu",
   "version": "1.0.0",
   "type": "module",
-  "homepage": ".",
+  "homepage": "say_goodbye_to_edunion",
   "description": "",
   "keywords": [
     "react",
@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

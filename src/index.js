@@ -9,7 +9,5 @@ const rootElement = document.getElementById("root");
 rootElement.setAttribute('class','d-flex justify-content-center align-items-center vh-100')
 const root = createRoot(rootElement);
 
-root.render(
-    <App/>
-);
+root.render(<App/>);
 

@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/say_goodbye_to_edunion/static/css/main.cf76d39b.css",
-    "main.js": "/say_goodbye_to_edunion/static/js/main.81ac04ea.js",
+    "main.css": "/say_goodbye_to_edunion/static/css/main.d41493f6.css",
+    "main.js": "/say_goodbye_to_edunion/static/js/main.18992382.js",
     "index.html": "/say_goodbye_to_edunion/index.html",
-    "main.cf76d39b.css.map": "/say_goodbye_to_edunion/static/css/main.cf76d39b.css.map",
-    "main.81ac04ea.js.map": "/say_goodbye_to_edunion/static/js/main.81ac04ea.js.map"
+    "main.d41493f6.css.map": "/say_goodbye_to_edunion/static/css/main.d41493f6.css.map",
+    "main.18992382.js.map": "/say_goodbye_to_edunion/static/js/main.18992382.js.map"
   },
   "entrypoints": [
-    "static/css/main.cf76d39b.css",
-    "static/js/main.81ac04ea.js"
+    "static/css/main.d41493f6.css",
+    "static/js/main.18992382.js"
   ]
 }

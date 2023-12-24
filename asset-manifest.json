@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "./static/css/main.d41493f6.css",
-    "main.js": "./static/js/main.d12c1d75.js",
-    "index.html": "./index.html",
-    "main.d41493f6.css.map": "./static/css/main.d41493f6.css.map",
-    "main.d12c1d75.js.map": "./static/js/main.d12c1d75.js.map"
+    "main.css": "/say_goodbye_to_edu/static/css/main.d41493f6.css",
+    "main.js": "/say_goodbye_to_edu/static/js/main.11e8e738.js",
+    "index.html": "/say_goodbye_to_edu/index.html",
+    "main.d41493f6.css.map": "/say_goodbye_to_edu/static/css/main.d41493f6.css.map",
+    "main.11e8e738.js.map": "/say_goodbye_to_edu/static/js/main.11e8e738.js.map"
   },
   "entrypoints": [
     "static/css/main.d41493f6.css",
-    "static/js/main.d12c1d75.js"
+    "static/js/main.11e8e738.js"
   ]
 }

@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/say_goodbye_to_edu/static/css/main.d41493f6.css",
-    "main.js": "/say_goodbye_to_edu/static/js/main.11e8e738.js",
-    "index.html": "/say_goodbye_to_edu/index.html",
-    "main.d41493f6.css.map": "/say_goodbye_to_edu/static/css/main.d41493f6.css.map",
-    "main.11e8e738.js.map": "/say_goodbye_to_edu/static/js/main.11e8e738.js.map"
+    "main.css": "/say_goodbye_to_edunion/static/css/main.d41493f6.css",
+    "main.js": "/say_goodbye_to_edunion/static/js/main.11e8e738.js",
+    "index.html": "/say_goodbye_to_edunion/index.html",
+    "main.d41493f6.css.map": "/say_goodbye_to_edunion/static/css/main.d41493f6.css.map",
+    "main.11e8e738.js.map": "/say_goodbye_to_edunion/static/js/main.11e8e738.js.map"
   },
   "entrypoints": [
     "static/css/main.d41493f6.css",

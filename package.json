@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "homepage": "say_goodbye_to_edunion",
-  "description": "",
+  "description": "say_goodbye_to_edunion",
   "keywords": [
     "react",
     "starter"
@@ -13,12 +13,15 @@
     "@popperjs/core": "2.11.7",
     "animate.css": "4.1.1",
     "bootstrap": "5.2.3",
+    "bootstrap-icons": "^1.11.2",
     "fullpage.js": "^4.0.20",
     "gh-pages": "^6.0.0",
     "loader-utils": "3.2.1",
     "react": "18.2.0",
     "react-confetti-explosion": "^2.1.2",
     "react-dom": "18.2.0",
+    "react-router": "^6.21.0",
+    "react-router-dom": "^6.21.0",
     "react-scripts": "5.0.1",
     "sass": "^1.68.0"
   },

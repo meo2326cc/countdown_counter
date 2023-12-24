@@ -1,14 +1,67 @@
 import { useEffect, useReducer, useState , memo } from "react";
 import ConfettiExplosion from 'react-confetti-explosion';
+import { useParams } from "react-router";
+import  Sidebar  from "./sidebar.js";
+import template from "./template.js"
 import 'animate.css';
+import Template from "./template.js";
+
+
+
+export default function App() {
+
+  const { title , start , time } = useParams()
+  const timeInfo = handelId( time )
+  const progressTime = handelId ( start )
+  document.title = title
+
+    function handelId (timeInfo ){
+    if(timeInfo === undefined){
+      return 0
+    }else{
+    const dateArr = []
+    dateArr.push( Number(timeInfo.slice(0,4)) )
+    dateArr.push( Number(timeInfo.slice(4,6)) )
+    dateArr.push( Number(timeInfo.slice(6,8)) )
+    dateArr.push( Number(timeInfo.slice(8,10)))
+    dateArr.push( Number(timeInfo.slice(10,12)))
+    dateArr.push( 0 )
+    return dateArr
+    }
+
+  }
+
+  
+  return (
+    <Template>
+      <Sidebar/>
+      <div className="card-body">
+        <h1 className="fs-sp mb-4 text-900">距離<br />{title}還剩</h1>
+        <CountDown id={timeInfo} progressTime={progressTime}/>
+      <Mymusic/>
+      </div>
+    </Template>
+  )
+}
+
+const Mymusic = memo(()=>{
 
 const playlist = ['https://open.spotify.com/embed/track/0PpKyS37jFU3w8iToakC0c?utm_source=generator','https://open.spotify.com/embed/track/6h4DqVZWGbAAb1B4bCCtQl?utm_source=generator','https://open.spotify.com/embed/track/0UuKWge3Z3TdeCOQXHxpRa?utm_source=generator','https://open.spotify.com/embed/track/6Fc6MhR8IyIn7BflJZzuaq?utm_source=generator','https://open.spotify.com/embed/track/1XTz89GHH3Mwd6KnRCEGXG?utm_source=generator','https://open.spotify.com/embed/track/7afE7O7ZctugjjPYLzRyKg?utm_source=generator','https://open.spotify.com/embed/track/40WixaIHWQRvGOjCdmJBZT?utm_source=generator','https://open.spotify.com/embed/track/0DDKPIRfFmR1lwpKeRl3UN?utm_source=generator']
 
-export default function App() {
+  return(
+    <iframe className="mt-4" src={playlist[Math.floor(Math.random() * playlist.length)]} width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
+  )
+})
+
+
+
+function CountDown({  id , progressTime}) {
+
+
   function reducer (state , action){
     switch (action.type) {
       case 'SETTIME':
-        return { leftDays: action.days ,
+      return { leftDays: action.days ,
       leftHours: action.hours ,
       leftMinutes: action.minutes ,
       leftSeconds: action.seconds ,
@@ -33,63 +86,10 @@ export default function App() {
     countOver : false
   })
 
-  return (
-    <div className="card rounded-3 shadow-lg bg-200">
-      { state.countOver ? <CountOVer/> : null }
-      <div className="card-body">
-        <h1 className="fs-sp mb-4 text-900">距離<br />離職還剩</h1>
-        <CountDown dispatch={dispatch} state={state}/>
-      <Mymusic/>
-      </div>
-    </div>
-
-  )
-}
-
-const Mymusic = memo(()=>{
-  return(
-    <iframe className="mt-4" src={playlist[Math.floor(Math.random() * playlist.length)]} width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> 
-  )
-})
-
-function CountOVer (){
-  const [exp , setExp] = useState(0)
-useEffect(()=>{
-
-  for( let i=0 ; i<10 ; i++){
-    setTimeout(()=>{
-      setExp(pre=> pre+1)
-    },1000*i)
-  }
-
-},[])
-
-  return(
-  <div className="position-absolute h-100 w-100">
-    {console.log(exp)}
- <div className="position-absolute" key={exp} style={{top:`${Math.floor((Math.random()*100)+1)}%`, left:`${Math.floor((Math.random()*100)+1)}%` }}>
-       <ConfettiExplosion/>
-    </div> 
-
-  </div>
-  )
-}
-
-function CountDown({dispatch , state}) {
-
-  // const [leftDays, setLeftdays] = useState('n');
-  // const [leftHours, setLefthours] = useState('n');
-  // const [leftMinutes, setLeftminutes] = useState('n');
-  // const [leftSeconds, setLeftseconds] = useState('n');
-
-  //  const [countover ,setCountover] = useState(false);
-
-  //const time = 1698585600000;
-  const time = Date.parse("November 1, 2023");
+  const time = new Date( id[0] , id[1]-1 , id[2] , id[3] , id[4] , id[5] ).getTime()
   const secondsPerDay = 86400;
   const secondsPerHour = 3600;
   const secondsPerMinute = 60;
-
 
   useEffect(() => {
 
@@ -103,28 +103,23 @@ function CountDown({dispatch , state}) {
       const lefthours = Math.floor(leftTimeTotal / secondsPerHour - leftdays * 24);
       const leftminutes = Math.floor((leftTimeTotal / secondsPerMinute - lefthours * secondsPerMinute) % secondsPerMinute);
       const leftseconds = Math.floor((leftTimeTotal - leftdays * secondsPerDay) % secondsPerMinute);
-      // setLeftdays(leftdays);
-      // setLefthours(lefthours);
-      // setLeftminutes(leftminutes);
-      // setLeftseconds(leftseconds);
+
       dispatch({ type:'SETTIME' , days: leftdays , hours:lefthours , minutes: leftminutes , seconds: leftseconds })
 
     }, 1000);
-      //setIsLoading(true);
+
+
     return () => {
       clearInterval(i);
     };    
     
     }else{
-      // setLeftdays(0);
-      // setLefthours(0);
-      // setLeftminutes(0);
-      // setLeftseconds(0);
+
       dispatch({type:'SETTIME' , days: 0 , hours:0 , minutes:0 , seconds: 0 })
       dispatch({ type:'TIMEOVER'})
     }      
 
-  },[state.leftSeconds]);
+  },[state.leftSeconds , id ]);
 
 
   return (
@@ -149,20 +144,22 @@ function CountDown({dispatch , state}) {
         </div>
       {/* { isLoading ? null : <div className="position-absolute bg-100 d-flex align-items-center justify-content-center h-100">loading...</div>} */}
       </div>
-      <ProgressBar update={state.leftSeconds} time={time}/>
+      <ProgressBar update={state.leftSeconds} time={time} progressTime={progressTime}/>
     </div>
   );
 }
 
 
 
-function ProgressBar({update ,time}){
+function ProgressBar({update ,time , progressTime}){
 //const November = Date.parse("November 1, 2023");
-const October = Date.parse("October 1, 2023");
+
+const startTime = new Date( progressTime[0] , progressTime[1]-1 , progressTime[2] , progressTime[3] , progressTime[4] , progressTime[5] ).getTime()
 const [progress , setProgress] = useState(0);
 
+
 useEffect(()=>{
-  const calc = 100-((time - Date.now())/(time - October)*100);
+  const calc = 100-((time - Date.now())/(time - startTime)*100);
    setProgress(calc.toFixed(4))
 },[update])
 

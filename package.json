@@ -1,9 +1,9 @@
 {
-  "name": "say_goodbye_to_edu",
+  "name": "countdown_counter",
   "version": "1.0.0",
   "type": "module",
-  "homepage": "say_goodbye_to_edunion",
-  "description": "say_goodbye_to_edunion",
+  "homepage": "countdown_counter",
+  "description": "countdown_counter",
   "keywords": [
     "react",
     "starter"
@@ -27,8 +27,7 @@
     "sass": "^1.68.0"
   },
   "devDependencies": {
-    "@babel/runtime": "7.13.8",
-    "typescript": "4.1.3"
+    "@babel/runtime": "7.13.8"
   },
   "scripts": {
     "start": "react-scripts start",

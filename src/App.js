@@ -2,7 +2,6 @@ import { useEffect, useReducer, useState, memo } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 import { useParams } from "react-router";
 import Sidebar from "./sidebar.js";
-import template from "./template.js";
 import "animate.css";
 import Template from "./template.js";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -52,6 +51,12 @@ function LinkArea() {
   const [copied, setCopied] = useState(false);
 
   return (
+      <div className="input-group mt-3">
+        <input
+          type="text"
+          className="form-control"
+          value={document.URL}
+        />
     <CopyToClipboard
       text={document.URL}
       onCopy={() => {
@@ -61,15 +66,6 @@ function LinkArea() {
         }, 2000);
       }}
     >
-      <div className="input-group mt-3">
-        <input
-          type="text"
-          className="form-control"
-          aria-label="Recipient's username"
-          aria-describedby="button-addon2"
-          value={document.URL}
-        />
-
         <button
           className="btn btn-success"
           style={{ width: "150px" }}
@@ -78,8 +74,9 @@ function LinkArea() {
         >
           {copied ? "已複製！" : "分享計時器網址"}
         </button>
+    </CopyToClipboard>        
       </div>
-    </CopyToClipboard>
+
   );
 }
 
@@ -176,7 +173,7 @@ function CountDown({ id, progressTime }) {
             className="animate__animated animate__fadeInDown animate__faster number d-flex justify-content-center"
           >
             <h2 className="text-warning">
-              {state.leftDays}天<ConfettiExplosion key={state.leftDays} />
+              {state.leftDays}天{state.countOver && <ConfettiExplosion />}
             </h2>
           </div>
           <h2 className="text-warning">-</h2>
@@ -201,7 +198,7 @@ function CountDown({ id, progressTime }) {
             <h2 className="text-warning">{state.leftSeconds}秒</h2>
           </div>
         </div>
-        {/* { isLoading ? null : <div className="position-absolute bg-100 d-flex align-items-center justify-content-center h-100">loading...</div>} */}
+
       </div>
       <ProgressBar
         update={state.leftSeconds}
@@ -213,7 +210,7 @@ function CountDown({ id, progressTime }) {
 }
 
 function ProgressBar({ update, time, progressTime }) {
-  //const November = Date.parse("November 1, 2023");
+
 
   const startTime = new Date(
     progressTime[0],

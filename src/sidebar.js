@@ -14,7 +14,7 @@ export default function Sidebar(){
 
     <div className="offcanvas offcanvas-end" tabIndex="-1"  id="offcanvas" >
   <div className="offcanvas-header">
-    <h5 className="offcanvas-title" id="offcanvasExampleLabel">設定</h5>
+    <h5 className="offcanvas-title" id="offcanvasExampleLabel">新增倒數計時器</h5>
     <button type="button" className="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
   <div className="offcanvas-body">
@@ -31,18 +31,20 @@ export default function Sidebar(){
 function Setting(){
 
     const [info , setInfo] = useState({ date:'' , time: '', title: '' })
-    const setNewCounter = useNavigate();
+    //const setNewCounter = useNavigate();
 
     function submit(e){
         e.preventDefault();
         setInfo( { date:'' , time: '', title: '' } )
-        setNewCounter( '/' + info.date + info.time + '/' + startTime(new Date()) + '/' + info.title  )
+        //setNewCounter( '/' + info.date + info.time + '/' + startTime(new Date()) + '/' + info.title  )
+        window.open( '#/' + info.date + info.time + '/' + startTime(new Date()) + '/' + info.title , '_blank' )
     }
 
     function setTime( futureTimeMinutes , title ) {
       const targetTime = new Date()
       targetTime.setTime( new Date().getTime() + futureTimeMinutes * 1000 * 60 )
-      setNewCounter(  '/' + startTime(targetTime) + '/' + startTime(new Date()) + '/' + title  )
+      //setNewCounter(  '/' + startTime(targetTime) + '/' + startTime(new Date()) + '/' + title  )
+      window.open( '#/' + startTime(targetTime) + '/' + startTime(new Date()) + '/' + title  , '_blank' )
     }
 
     function startTime(timeObj) {
@@ -72,17 +74,17 @@ function Setting(){
     <form onSubmit={submit} className="p-3">
         <div>
         <label htmlFor="title"> 主題 </label>
-        <input className="form-control mb-3" type="text" id="title" name="title" onChange={handleInput} placeholder="ex.離職" required />            
+        <input className="form-control mb-3 text-center" type="text" id="title" name="title" onChange={handleInput} placeholder="ex.離職" required />            
         </div>
         <div>
         <label htmlFor="date"> 日期 </label>
-        <input className="form-control mb-3" type="date" name="date" onChange={handleInput} required />
+        <input className="form-control mb-3 text-center" type="date" name="date" onChange={handleInput} required />
         </div>
         <div>
         <label htmlFor="time"> 時間 </label>            
-        <input className="form-control mb-3" type="time" name="time" onChange={handleInput} required/>
+        <input className="form-control mb-3 text-center" type="time" name="time" onChange={handleInput} required/>
         </div>
-        <input className="form-control mb-3 btn-primary btn" type="submit"  data-bs-dismiss="offcanvas" />    
+        <button className="form-control my-3 btn-primary btn" type="submit"  data-bs-dismiss="offcanvas">新增計時器</button>  
      </form>
      <div className="border-top px-3">
       <h3 className="fs-5 my-3"> 直接倒數</h3>

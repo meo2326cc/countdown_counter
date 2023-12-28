@@ -47,17 +47,17 @@ export default function Setting(){
     <form onSubmit={submit} className="p-3">
         <div>
         <label htmlFor="title"> 主題 </label>
-        <input className="form-control mb-3" type="text" id="title" name="title" onChange={handleInput} placeholder="ex.離職" required />            
+        <input className="form-control mb-3 text-center" type="text" id="title" name="title" onChange={handleInput} placeholder="ex.離職" required pattern="[^/]"/>            
         </div>
         <div>
         <label htmlFor="date"> 日期 </label>
-        <input className="form-control mb-3" type="date" name="date" onChange={handleInput} required />
+        <input className="form-control mb-3 text-center" type="date" name="date" onChange={handleInput} required />
         </div>
         <div>
         <label htmlFor="time"> 時間 </label>            
-        <input className="form-control mb-3" type="time" name="time" onChange={handleInput} required />
+        <input className="form-control mb-3 text-center" type="time" name="time" onChange={handleInput} required />
         </div>
-        <input className="form-control mb-3 btn-primary btn" type="submit"/>    
+        <input className="form-control  my-3 btn-primary btn" type="submit"/>    
      </form>
      <div className="border-top px-3">
       <h3 className="fs-5 my-3"> 直接倒數</h3>

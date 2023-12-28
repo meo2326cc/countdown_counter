@@ -1,4 +1,3 @@
-import Template from "./template.js";
 import Setting from "./setting.js";
 
 export default function HomePage(){
@@ -15,7 +14,7 @@ export default function HomePage(){
                 <br />
                 倒數計時器
               </h1>
-              <p className="fs-3">隨便輸入主題後開始，或直接倒數 </p>
+              <p className="fs-3">隨便輸入主題與結束的時間後開始， <br/> 或直接倒數 </p>
             </div>
           </div>
           <div className="col-12 col-md-6">
